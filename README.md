@@ -12,6 +12,8 @@ Base URL `/api/auth`
 | PUT         | `/:id/edit`    | User edit by ID    |
 | DELETE      | `/:id/delete`  | User delete by ID  |
 
+## Quiz routes
+
 
 Base URL `/api/quiz`
 
