@@ -13,6 +13,19 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: [true, 'Username required']
+  },
+  avatar: {
+    type: String,
+    default: 'https://i.stack.imgur.com/l60Hf.png'
+  },
+  role: {
+    type: String,
+    enum: ['USER', 'EDITOR', 'ADMIN'],
+    default: 'USER',
+  },
+  points: {
+    type: Number,
+    default: 0
   }
 },
   {
