@@ -8,29 +8,38 @@ const quizSchema = new Schema(
         },
         theme: {
             type: String,
-            requierd: [true, 'Theme required']
+            required: [true, 'Theme required']
         },
         questionsArr: [{
             question: { type: String, required: [true, 'Question required'] },
             correctAnswer: { type: String, required: [true, 'Correct answer required'] },
             answersOptions: { type: [String], required: [true, 'Three Answers options required'] }
         }],
-        points: [Number],
+        points: {
+            type: [Number],
+            default: []
+        },
         owner: {
             ref: 'User',
             type: Schema.Types.ObjectId
         },
-        raiting: [{
-            owner: {
-                ref: 'User',
+        raiting: {
+            type: [{
+                owner: {
+                    ref: 'User',
+                    type: Schema.Types.ObjectId
+                },
+                rate: { type: Number }
+            }],
+            default: []
+        },
+        comments: {
+            type: [{
+                ref: 'Comment',
                 type: Schema.Types.ObjectId
-            },
-            rate: { type: Number }
-        }],
-        comments: [{
-            ref: 'Comment',
-            type: Schema.Types.ObjectId
-        }]
+            }],
+            default: []
+        }
 
     },
     {
