@@ -10,6 +10,9 @@ const quizSchema = new Schema(
             type: String,
             required: [true, 'Theme required']
         },
+        description: {
+            type: String,
+        },
         questionsArr: [{
             question: { type: String, required: [true, 'Question required'] },
             correctAnswer: { type: String, required: [true, 'Correct answer required'] },
