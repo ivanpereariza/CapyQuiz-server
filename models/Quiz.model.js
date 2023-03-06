@@ -10,6 +10,10 @@ const quizSchema = new Schema(
             type: String,
             required: [true, 'Theme required']
         },
+        quizImg: {
+            type: String,
+            default: 'https://res.cloudinary.com/dkfzj9tmk/image/upload/v1678118872/CapyQuiz/quiz-logo-with-speech-bubble-icon_149152-811_mngvb4.avif'
+        },
         description: {
             type: String,
         },
@@ -27,7 +31,7 @@ const quizSchema = new Schema(
             ref: 'User',
             type: Schema.Types.ObjectId
         },
-        raiting: {
+        rating: {
             type: [{
                 owner: {
                     ref: 'User',

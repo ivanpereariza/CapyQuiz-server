@@ -26,7 +26,17 @@ const userSchema = new Schema({
   points: {
     type: Number,
     default: 0
-  }
+  },
+  quizzes: [{
+    quiz: {
+      ref: 'Quiz',
+      type: Schema.Types.ObjectId
+    },
+    points: {
+      type: Number,
+      default: 0
+    },
+  }]
 },
   {
     timestamps: true

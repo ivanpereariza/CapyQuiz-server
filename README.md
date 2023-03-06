@@ -6,11 +6,18 @@ Base URL `/api/auth`
 
 | HTTP Method | URI path       | Description        |
 | ----------- | -------------- | ------------------ |
+| GET         | `/verify`      | verify authToken   |
 | POST        | `/signup`      | signup handler     |
 | POST        | `/login`       | login handler      |
-| GET         | `/verify`      | verify authToken   |
-| PUT         | `/:id/edit`    | User edit by ID    |
-| DELETE      | `/:id/delete`  | User delete by ID  |
+
+## User routes
+Base URL `/api/users`
+
+| HTTP Method | URI path       | Description        |
+| ----------- | -------------- | ------------------ |
+| GET         | `/userById/:id`| Get info user by ID|
+| PUT         | `/edit/:id`    | User edit by ID    |
+| DELETE      | `/delete/:id`  | User delete by ID  |
 
 ## Quiz routes
 
@@ -21,8 +28,7 @@ Base URL `/api/quiz`
 | ----------- | -------------------------- | ------------------ |
 | GET         | `/getAllQuizzes`           | All quizzes        |
 | GET         | `/search?name={query}`     | Search by name     |
-| GET         | `/search/:theme`           | Quizzes by theme   |
+| GET         | `/quizById/:id`            | Get one Quiz by ID |
 | POST        | `/saveQuiz`                | Create new quiz    |
-| GET         | `/:id`                     | Get one Quiz by ID |
-| PUT         | `/:id/edit`                | Quiz edit by ID    |
-| DELETE      | `/:id/delete`              | Quiz delete by ID  |
+| PUT         | `/edit/:id`                | Quiz edit by ID    |
+| DELETE      | `/delete/:id`              | Quiz delete by ID  |
