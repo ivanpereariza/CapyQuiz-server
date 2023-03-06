@@ -1,6 +1,14 @@
 const Quiz = require("../models/Quiz.model")
 const router = require("express").Router()
 
+router.get('/', (req, res, next) => {
+
+    Quiz
+        .find()
+        .then((quizzes) => res.json(quizzes))
+        .catch(err => next(err))
+})
+
 router.post('/saveQuiz', (req, res, next) => {
     const { title, description, theme, owner, questionsArr } = req.body
 
@@ -9,5 +17,7 @@ router.post('/saveQuiz', (req, res, next) => {
         .then(() => res.sendStatus(201))
         .catch(err => next(err))
 })
+
+
 
 module.exports = router
