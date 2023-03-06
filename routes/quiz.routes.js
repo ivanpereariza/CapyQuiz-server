@@ -5,6 +5,7 @@ router.get('/getAllQuizzes', (req, res, next) => {
 
     Quiz
         .find()
+        .populate('owner')
         .then((quizzes) => res.json(quizzes))
         .catch(err => next(err))
 })
