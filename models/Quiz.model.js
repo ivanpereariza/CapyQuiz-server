@@ -12,7 +12,7 @@ const quizSchema = new Schema(
         },
         quizImg: {
             type: String,
-            default: 'https://res.cloudinary.com/dkfzj9tmk/image/upload/v1678118872/CapyQuiz/quiz-logo-with-speech-bubble-icon_149152-811_mngvb4.avif'
+            default: 'https://res.cloudinary.com/dkfzj9tmk/image/upload/v1678125910/CapyQuiz/quiz-logo-with-speech-bubble-icon_149152-811_rakyxp.png'
         },
         description: {
             type: String,
