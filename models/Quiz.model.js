@@ -16,7 +16,8 @@ const quizSchema = new Schema(
         questionsArr: [{
             question: { type: String, required: [true, 'Question required'] },
             correctAnswer: { type: String, required: [true, 'Correct answer required'] },
-            answersOptions: { type: [String], required: [true, 'Three Answers options required'] }
+            answersOptions: { type: [String], required: [true, 'Three Answers options required'] },
+            points: { type: [Number], default: [] },
         }],
         points: {
             type: [Number],
