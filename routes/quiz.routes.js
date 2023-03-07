@@ -1,3 +1,4 @@
+const { verifyToken } = require("../middlewares/auth.middleware")
 const Quiz = require("../models/Quiz.model")
 const router = require("express").Router()
 
@@ -10,9 +11,10 @@ router.get('/getAllQuizzes', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/saveQuiz', (req, res, next) => {
+router.post('/saveQuiz', verifyToken, (req, res, next) => {
 
-    const { title, description, theme, owner, questionsArr } = req.body
+    const { title, description, theme, questionsArr } = req.body
+    const { _id: owner } = req.payload
 
     Quiz
         .create({ title, description, theme, owner, questionsArr })
