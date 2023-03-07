@@ -26,6 +26,7 @@ router.get('/quizById/:id', (req, res, next) => {
 
     Quiz
         .findById(id)
+        .populate('owner')
         .then(quiz => res.status(200).json(quiz))
         .catch(err => next(err))
 })
