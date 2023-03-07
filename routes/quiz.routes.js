@@ -33,6 +33,17 @@ router.get('/quizById/:id', (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.get('/quizByOwner/:id', (req, res, next) => {
+
+    const { id } = req.params
+
+    Quiz
+        .find({ owner: id })
+        .populate('owner')
+        .then(quiz => res.status(200).json(quiz))
+        .catch(err => next(err))
+})
+
 router.put('/edit/:id', (req, res, next) => {
 
     const { id } = req.params
