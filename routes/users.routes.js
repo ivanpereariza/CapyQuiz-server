@@ -15,10 +15,10 @@ router.get('/userById/:id', (req, res, next) => {
 router.put('/edit/:id', (req, res, next) => {
 
     const { id } = req.params
-    const { email, username, avatar } = req.body
+    const { email, username, avatar, role } = req.body
 
     User
-        .findByIdAndUpdate(id, { email, username, avatar })
+        .findByIdAndUpdate(id, { email, username, avatar, role })
         .then(user => res.status(200).json(user))
         .catch(err => next(err))
 })
