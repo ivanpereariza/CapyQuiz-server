@@ -55,6 +55,17 @@ router.put('/edit/:id', (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.put('/addPoints/:id', (req, res, next) => {
+
+    const { id } = req.params
+    const { points } = req.body
+
+    Quiz
+        .findByIdAndUpdate(id, { $push: { 'points': points } })
+        .then(quiz => res.status(200).json(quiz))
+        .catch(err => next(err))
+})
+
 router.delete('/delete/:id', (req, res, next) => {
 
     const { id } = req.params

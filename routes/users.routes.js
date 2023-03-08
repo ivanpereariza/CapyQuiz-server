@@ -7,7 +7,7 @@ router.get('/userById/:id', (req, res, next) => {
 
     User
         .findById(id)
-        .select({ avatar: 1, username: 1, points: 1, role: 1, email: 1 })
+        .select({ avatar: 1, username: 1, points: 1, role: 1, email: 1, quizzes: 1 })
         .then(user => res.status(200).json(user))
         .catch(err => next(err).json({ message: "User dont exist" }))
 })
@@ -22,6 +22,29 @@ router.put('/edit/:id', (req, res, next) => {
         .then(user => res.status(200).json(user))
         .catch(err => next(err))
 })
+
+router.put('/addQuiz/:id', (req, res, next) => {
+
+    const { id } = req.params
+    const { quizzes } = req.body
+
+    User
+        .findByIdAndUpdate(id, { $addToSet: { 'quizzes': quizzes } })
+        .then(user => res.status(200).json(user))
+        .catch(err => next(err))
+})
+
+router.put('/editPoints/:id', (req, res, next) => {
+
+    const { id } = req.params
+    const { points } = req.body
+
+    User
+        .findByIdAndUpdate(id, { $inc: { 'points': points } })
+        .then(user => res.status(200).json(user))
+        .catch(err => next(err))
+})
+
 
 router.delete('/delete/:id', (req, res, next) => {
     const { id } = req.params
