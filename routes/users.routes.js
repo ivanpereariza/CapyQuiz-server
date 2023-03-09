@@ -9,7 +9,7 @@ router.get('/userById/:id', (req, res, next) => {
         .findById(id)
         .select({ avatar: 1, username: 1, points: 1, role: 1, email: 1, quizzes: 1 })
         .then(user => res.status(200).json(user))
-        .catch(err => next(err).json({ message: "User dont exist" }))
+        .catch(err => next(err).json({ errorMessages: ["User dont exist"] }))
 })
 
 router.put('/edit/:id', (req, res, next) => {
