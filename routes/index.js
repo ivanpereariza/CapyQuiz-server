@@ -9,4 +9,7 @@ router.use("/quiz", quizRoutes)
 const usersRoutes = require("./users.routes")
 router.use("/users", usersRoutes)
 
+const uploadRoutes = require("./upload.routes")
+router.use("/upload", uploadRoutes)
+
 module.exports = router

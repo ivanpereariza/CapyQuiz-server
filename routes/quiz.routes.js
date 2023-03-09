@@ -13,11 +13,11 @@ router.get('/getAllQuizzes', (req, res, next) => {
 
 router.post('/saveQuiz', verifyToken, (req, res, next) => {
 
-    const { title, description, theme, questionsArr } = req.body
+    const { title, description, theme, questionsArr, quizImg } = req.body
     const { _id: owner } = req.payload
 
     Quiz
-        .create({ title, description, theme, owner, questionsArr })
+        .create({ title, description, theme, owner, questionsArr, quizImg })
         .then(() => res.sendStatus(201))
         .catch(err => next(err))
 })
