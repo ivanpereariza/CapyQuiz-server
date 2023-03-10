@@ -19,7 +19,7 @@ const quizSchema = new Schema(
         },
         description: {
             type: String,
-            maxlength: [100, 'The description shold have maximun 100 characters'],
+            maxlength: [200, 'The description shold have maximun 200 characters'],
         },
         questionsArr: {
             type: [{
@@ -27,7 +27,7 @@ const quizSchema = new Schema(
                     type: String,
                     required: [true, 'Question required'],
                     minlength: [5, 'The question shold have minimun 5 characters'],
-                    maxlength: [120, 'The question shold have maximun 120 characters'],
+                    maxlength: [150, 'The question shold have maximun 150 characters'],
                 },
                 correctAnswer: {
                     type: String,
