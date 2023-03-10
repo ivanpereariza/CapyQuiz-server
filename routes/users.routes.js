@@ -19,7 +19,10 @@ router.put('/edit/:id', (req, res, next) => {
 
     User
         .findByIdAndUpdate(id, { email, username, avatar, role })
-        .then(user => res.status(200).json(user))
+        .then(user => {
+            const authToken = user.signToken()
+            res.status(200).json({ authToken })
+        })
         .catch(err => next(err))
 })
 
