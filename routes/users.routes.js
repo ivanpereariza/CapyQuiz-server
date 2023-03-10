@@ -12,13 +12,24 @@ router.get('/userById/:id', (req, res, next) => {
         .catch(err => next(err).json({ errorMessages: ["User dont exist"] }))
 })
 
+router.get('/getUsersByPoints', (req, res, next) => {
+
+    User
+        .find()
+        .select({ avatar: 1, username: 1, points: 1, quizzes: 1 })
+        .sort({ points: -1 })
+        .limit(30)
+        .then(users => res.status(200).json(users))
+        .catch(err => next(err))
+})
+
 router.put('/edit/:id', (req, res, next) => {
 
     const { id } = req.params
     const { email, username, avatar, role } = req.body
 
     User
-        .findByIdAndUpdate(id, { email, username, avatar, role })
+        .findByIdAndUpdate(id, { email, username, avatar, role }, { new: true })
         .then(user => {
             const authToken = user.signToken()
             res.status(200).json({ authToken })
