@@ -6,7 +6,7 @@ const quizSchema = new Schema(
             type: String,
             required: [true, 'Title required'],
             minlength: [5, 'The title shold have minimun 5 characters'],
-            maxlength: [30, 'The title shold have maximun 30 characters'],
+            maxlength: [80, 'The title shold have maximun 80 characters'],
         },
         theme: {
             type: String,
@@ -27,13 +27,11 @@ const quizSchema = new Schema(
                     type: String,
                     required: [true, 'Question required'],
                     minlength: [5, 'The question shold have minimun 5 characters'],
-                    maxlength: [70, 'The question shold have maximun 70 characters'],
+                    maxlength: [120, 'The question shold have maximun 120 characters'],
                 },
                 correctAnswer: {
                     type: String,
                     required: [true, 'Correct answer required'],
-                    minlength: [5, 'The answers shold have minimun 5 characters'],
-                    maxlength: [50, 'The answers shold have maximun 50 characters'],
                 },
                 answersOptions: {
                     type: [String],
