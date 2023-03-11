@@ -69,4 +69,19 @@ router.delete('/delete/:id', (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.get('/resetToken/:id', (req, res, next) => {
+
+    const { id } = req.params
+
+    User
+        .findById(id)
+        .then(user => {
+            const authToken = user.signToken()
+            res.status(200).json({ authToken })
+        })
+        .catch(err => next(err))
+})
+
+
+
 module.exports = router

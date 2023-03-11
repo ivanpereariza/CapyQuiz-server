@@ -61,7 +61,7 @@ router.put('/addPoints/:id', (req, res, next) => {
     const { points } = req.body
 
     Quiz
-        .findByIdAndUpdate(id, { $push: { 'points': points } })
+        .findByIdAndUpdate(id, { $push: { 'points': points } }, { new: true })
         .then(quiz => res.status(200).json(quiz))
         .catch(err => next(err))
 })
