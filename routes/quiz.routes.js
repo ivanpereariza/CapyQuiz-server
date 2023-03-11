@@ -47,10 +47,10 @@ router.get('/quizByOwner/:id', (req, res, next) => {
 router.put('/edit/:id', (req, res, next) => {
 
     const { id } = req.params
-    const { title, theme, description, questionsArr, quizImg } = req.body
+    const { title, theme, description, questionsArr, quizImg, rating } = req.body
 
     Quiz
-        .findByIdAndUpdate(id, { title, theme, description, questionsArr, quizImg })
+        .findByIdAndUpdate(id, { title, theme, description, questionsArr, quizImg, rating }, { new: true })
         .then(quiz => res.status(200).json(quiz))
         .catch(err => next(err))
 })
