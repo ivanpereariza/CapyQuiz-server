@@ -1,89 +1,23 @@
 const { verifyToken } = require("../middlewares/auth.middleware")
-const Quiz = require("../models/Quiz.model")
 const router = require("express").Router()
+const {
+    searchQuiz,
+    deleteQuiz,
+    addPointsToQuiz,
+    editQuiz,
+    quizByOwner,
+    quizById,
+    saveQuiz,
+    getAllQuizzes
+} = require('./../controllers/quiz.controller')
 
-router.get('/getAllQuizzes', (req, res, next) => {
-
-    Quiz
-        .find()
-        .populate('owner')
-        .then((quizzes) => res.json(quizzes))
-        .catch(err => next(err))
-})
-
-router.post('/saveQuiz', verifyToken, (req, res, next) => {
-
-    const { title, description, theme, questionsArr, quizImg } = req.body
-    const { _id: owner } = req.payload
-
-    Quiz
-        .create({ title, description, theme, owner, questionsArr, quizImg })
-        .then(() => res.sendStatus(201))
-        .catch(err => next(err))
-})
-
-router.get('/quizById/:id', (req, res, next) => {
-
-    const { id } = req.params
-
-    Quiz
-        .findById(id)
-        .populate('owner')
-        .then(quiz => res.status(200).json(quiz))
-        .catch(err => next(err))
-})
-
-router.get('/quizByOwner/:id', (req, res, next) => {
-
-    const { id } = req.params
-
-    Quiz
-        .find({ owner: id })
-        .populate('owner')
-        .then(quiz => res.status(200).json(quiz))
-        .catch(err => next(err))
-})
-
-router.put('/edit/:id', (req, res, next) => {
-
-    const { id } = req.params
-    const { title, theme, description, questionsArr, quizImg, rating } = req.body
-
-    Quiz
-        .findByIdAndUpdate(id, { title, theme, description, questionsArr, quizImg, rating }, { new: true })
-        .then(quiz => res.status(200).json(quiz))
-        .catch(err => next(err))
-})
-
-router.put('/addPoints/:id', (req, res, next) => {
-
-    const { id } = req.params
-    const { points } = req.body
-
-    Quiz
-        .findByIdAndUpdate(id, { $push: { 'points': points } }, { new: true })
-        .then(quiz => res.status(200).json(quiz))
-        .catch(err => next(err))
-})
-
-router.delete('/delete/:id', (req, res, next) => {
-
-    const { id } = req.params
-
-    Quiz
-        .findByIdAndDelete(id)
-        .then(quiz => res.status(200).json(quiz))
-        .catch(err => next(err))
-})
-
-router.get('/search', (req, res, next) => {
-
-    const { title } = req.query
-
-    Quiz
-        .find({ title })
-        .then(quizzes => res.status(200).json(quizzes))
-        .catch(err => next(err))
-})
+router.get('/getAllQuizzes', getAllQuizzes)
+router.post('/saveQuiz', verifyToken, saveQuiz)
+router.get('/quizById/:id', quizById)
+router.get('/quizByOwner/:id', quizByOwner)
+router.put('/edit/:id', editQuiz)
+router.put('/addPoints/:id', addPointsToQuiz)
+router.delete('/delete/:id', deleteQuiz)
+router.get('/search', searchQuiz)
 
 module.exports = router
