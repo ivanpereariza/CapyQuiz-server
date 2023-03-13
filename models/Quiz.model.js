@@ -64,6 +64,10 @@ const quizSchema = new Schema(
             }],
             default: []
         },
+        ratingAvg: {
+            type: Number,
+            default: 0
+        },
         comments: {
             type: [{
                 ref: 'Comment',
