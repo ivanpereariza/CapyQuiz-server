@@ -1,3 +1,4 @@
+const Quiz = require("../models/Quiz.model")
 const User = require("../models/User.model")
 
 
@@ -20,6 +21,20 @@ const getUsersByPoints = (req, res, next) => {
         .sort({ points: -1 })
         .limit(30)
         .then(users => res.status(200).json(users))
+        .catch(err => next(err))
+}
+
+const getUserWithQuizzes = (req, res, next) => {
+
+    const { id } = req.params
+
+    const promises = [User.findById(id).lean(), Quiz.find({ owner: id })]
+
+    Promise
+        .all(promises)
+        .then(([user, quizzesDone]) => {
+            res.status(200).json({ ...user, quizzesDone })
+        })
         .catch(err => next(err))
 }
 
@@ -88,5 +103,6 @@ module.exports = {
     addQuizToUser,
     editUser,
     getUsersByPoints,
-    userById
+    userById,
+    getUserWithQuizzes
 }

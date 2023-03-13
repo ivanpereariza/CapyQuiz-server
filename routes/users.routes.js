@@ -6,11 +6,13 @@ const {
     addQuizToUser,
     editUser,
     getUsersByPoints,
-    userById
+    userById,
+    getUserWithQuizzes
 } = require('./../controllers/users.controller')
 
 router.get('/userById/:id', userById)
 router.get('/getUsersByPoints', getUsersByPoints)
+router.get('/userWithQuizzes/:id', getUserWithQuizzes)
 router.put('/edit/:id', editUser)
 router.put('/addQuiz/:id', addQuizToUser)
 router.put('/editPoints/:id', editPointsUser)
