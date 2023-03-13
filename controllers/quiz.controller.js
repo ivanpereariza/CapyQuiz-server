@@ -77,12 +77,21 @@ const deleteQuiz = (req, res, next) => {
 
 const searchQuiz = (req, res, next) => {
 
-    const { title } = req.query
+    const { search, ratingMin, ratingMax } = req.query
 
     Quiz
-        .find({ title })
-        .then(quizzes => res.status(200).json(quizzes))
-        .catch(err => next(err))
+        .find({
+            $and: [{
+                $or: [{ 'title': { '$regex': search, '$options': 'i' } },
+                { 'theme': { '$regex': search, '$options': 'i' } }]
+            },
+            {
+                $and: [{ ratingAvg: { $gte: ratingMin } },
+                { ratingAvg: { $lte: ratingMax } }]
+            }]
+        })
+        .then((data) => res.json(data))
+        .catch(err => console.log(err))
 }
 
 
