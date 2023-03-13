@@ -6,6 +6,7 @@ const Quiz = require("../models/Quiz.model")
 const getAllQuizzes = (req, res, next) => {
     Quiz
         .find()
+        .sort({ createdAt: -1 })
         .populate('owner')
         .then((quizzes) => res.json(quizzes))
         .catch(err => next(err))
@@ -101,6 +102,7 @@ const searchQuiz = (req, res, next) => {
                 { ratingAvg: { $lte: ratingMax } }]
             }]
         })
+        .populate('owner')
         .then((data) => res.json(data))
         .catch(err => console.log(err))
 }
