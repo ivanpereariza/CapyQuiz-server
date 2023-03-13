@@ -43,13 +43,24 @@ const quizByOwner = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const ownerOfQuiz = (req, res, next) => {
+
+    const { id } = req.params
+
+    Quiz
+        .findById(id)
+        .populate('owner')
+        .then(quiz => res.status(200).json(quiz.owner))
+        .catch(err => next(err))
+}
+
 const editQuiz = (req, res, next) => {
 
     const { id } = req.params
-    const { title, theme, description, questionsArr, quizImg, rating } = req.body
+    const { title, theme, description, questionsArr, quizImg, rating, ratingAvg } = req.body
 
     Quiz
-        .findByIdAndUpdate(id, { title, theme, description, questionsArr, quizImg, rating }, { new: true })
+        .findByIdAndUpdate(id, { title, theme, description, questionsArr, quizImg, rating, ratingAvg }, { new: true })
         .then(quiz => res.status(200).json(quiz))
         .catch(err => next(err))
 }
@@ -101,6 +112,7 @@ module.exports = {
     addPointsToQuiz,
     editQuiz,
     quizByOwner,
+    ownerOfQuiz,
     quizById,
     saveQuiz,
     getAllQuizzes
