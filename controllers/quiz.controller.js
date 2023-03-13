@@ -101,6 +101,7 @@ const searchQuiz = (req, res, next) => {
                 { ratingAvg: { $lte: ratingMax } }]
             }]
         })
+        .populate('owner')
         .then((data) => res.json(data))
         .catch(err => console.log(err))
 }
