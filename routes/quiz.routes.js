@@ -10,7 +10,8 @@ const {
     saveQuiz,
     getAllQuizzes,
     ownerOfQuiz,
-    quizComments
+    quizComments,
+    getThreeRandomQuizzes
 } = require('./../controllers/quiz.controller')
 
 router.get('/getAllQuizzes', getAllQuizzes)
@@ -19,6 +20,7 @@ router.get('/quizByOwner/:id', quizByOwner)
 router.get('/ownerOfQuiz/:id', ownerOfQuiz)
 router.get('/search', searchQuiz)
 router.get('/quizComments/:id', quizComments)
+router.get('/getThreeRandomQuizzes', getThreeRandomQuizzes)
 router.post('/saveQuiz', verifyToken, saveQuiz)
 router.put('/edit/:id', editQuiz)
 router.put('/addPoints/:id', addPointsToQuiz)
