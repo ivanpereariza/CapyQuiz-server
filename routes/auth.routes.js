@@ -6,8 +6,8 @@ const {
     verify
 } = require('./../controllers/auth.controller')
 
+router.get('/verify', verifyToken, verify)
 router.post('/signup', signup)
 router.post('/login', login)
-router.get('/verify', verifyToken, verify)
 
 module.exports = router

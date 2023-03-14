@@ -1,8 +1,5 @@
 const Quiz = require("../models/Quiz.model")
 
-
-
-
 const getAllQuizzes = (req, res, next) => {
     Quiz
         .find()
@@ -107,6 +104,23 @@ const searchQuiz = (req, res, next) => {
         .catch(err => console.log(err))
 }
 
+const quizComments = (req, res, next) => {
+
+    const { id } = req.params
+
+    Quiz
+        .findById(id)
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'owner'
+            }
+        })
+        .select({ comments: 1 })
+        .then((comments) => res.json(comments))
+        .catch(err => next(err))
+}
+
 
 module.exports = {
     searchQuiz,
@@ -117,5 +131,6 @@ module.exports = {
     ownerOfQuiz,
     quizById,
     saveQuiz,
-    getAllQuizzes
+    getAllQuizzes,
+    quizComments
 }

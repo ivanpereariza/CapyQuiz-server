@@ -9,7 +9,6 @@ const commentSchema = new Schema(
         message: {
             type: String,
             required: [true, 'Message is required'],
-            minlength: 10,
         }
 
     },

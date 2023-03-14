@@ -13,11 +13,11 @@ const {
 router.get('/userById/:id', userById)
 router.get('/getUsersByPoints', getUsersByPoints)
 router.get('/userWithQuizzes/:id', getUserWithQuizzes)
+router.get('/resetToken/:id', resetToken)
 router.put('/edit/:id', editUser)
 router.put('/addQuiz/:id', addQuizToUser)
 router.put('/editPoints/:id', editPointsUser)
 router.delete('/delete/:id', deleteUser)
-router.get('/resetToken/:id', resetToken)
 
 
 

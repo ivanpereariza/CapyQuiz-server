@@ -12,4 +12,7 @@ router.use("/users", usersRoutes)
 const uploadRoutes = require("./upload.routes")
 router.use("/upload", uploadRoutes)
 
+const commentsRoutes = require("./comments.routes")
+router.use("/comments", commentsRoutes)
+
 module.exports = router
