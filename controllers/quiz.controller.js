@@ -31,6 +31,19 @@ const getAllQuizzes = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const getPopularQuizzes = (req, res, next) => {
+    Quiz
+        .find()
+        .sort({ ratingAvg: -1 })
+        .limit(3)
+        .then((quizzes) => res.json(quizzes))
+        .catch(err => next(err))
+}
+
+
+
+
+
 const saveQuiz = (req, res, next) => {
     const { title, description, theme, questionsArr, quizImg } = req.body
     const { _id: owner } = req.payload
@@ -164,4 +177,5 @@ module.exports = {
     getAllQuizzes,
     quizComments,
     getThreeRandomQuizzes
+    getPopularQuizzes
 }

@@ -9,12 +9,14 @@ const {
     quizById,
     saveQuiz,
     getAllQuizzes,
+    getPopularQuizzes,
     ownerOfQuiz,
     quizComments,
     getThreeRandomQuizzes
 } = require('./../controllers/quiz.controller')
 
 router.get('/getAllQuizzes', getAllQuizzes)
+router.get('/getPopularQuizzes', getPopularQuizzes)
 router.get('/quizById/:id', quizById)
 router.get('/quizByOwner/:id', quizByOwner)
 router.get('/ownerOfQuiz/:id', ownerOfQuiz)
