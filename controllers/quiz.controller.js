@@ -1,7 +1,7 @@
 const Quiz = require("../models/Quiz.model")
 const cron = require("node-cron")
-const scheduleTime = '0 0 12 * * *'
-let lastQuizId = ''
+const scheduleTime = '0 0 6 * * *'
+let lastQuizId = '640afee20183360d24ad2a52'
 let quiz
 
 cron.schedule(scheduleTime, async () => {
@@ -10,6 +10,7 @@ cron.schedule(scheduleTime, async () => {
         quiz = await selectRandomQuiz()
     }
     lastQuizId = quiz._id.toString()
+    console.log(lastQuizId)
 })
 
 
@@ -156,11 +157,11 @@ const quizComments = (req, res, next) => {
         .catch(err => next(err))
 }
 
-const getThreeRandomQuizzes = (req, res, next) => {
+const getDailyQuiz = (req, res, next) => {
 
     Quiz
-        .aggregate([{ $sample: { size: 3 } }])
-        .then(quizzes => res.json(quizzes))
+        .findById(lastQuizId)
+        .then((quiz) => res.json(quiz))
         .catch(err => next(err))
 }
 
@@ -176,6 +177,6 @@ module.exports = {
     saveQuiz,
     getAllQuizzes,
     quizComments,
-    getThreeRandomQuizzes
+    getDailyQuiz,
     getPopularQuizzes
 }
