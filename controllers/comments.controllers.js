@@ -16,6 +16,17 @@ const createComment = (req, res, next) => {
 
 }
 
+const deleteComment = (req, res, next) => {
+
+    const { id } = req.params
+
+    Comment
+        .findByIdAndDelete(id)
+        .then((data) => res.status(200).json(data))
+        .catch(err => console.log(err))
+
+}
+
 
 
 module.exports = createComment
