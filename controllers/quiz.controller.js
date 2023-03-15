@@ -10,7 +10,6 @@ cron.schedule(scheduleTime, async () => {
         quiz = await selectRandomQuiz()
     }
     lastQuizId = quiz._id.toString()
-    console.log(lastQuizId)
 })
 
 

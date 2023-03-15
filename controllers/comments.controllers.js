@@ -23,10 +23,25 @@ const deleteComment = (req, res, next) => {
     Comment
         .findByIdAndDelete(id)
         .then((data) => res.status(200).json(data))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 
+}
+
+const editComment = (req, res, next) => {
+
+    const { id } = req.params
+    const { message } = req.body
+
+    Comment
+        .findByIdAndUpdate(id, { message }, { new: true })
+        .then((data) => res.status(200).json(data))
+        .catch(err => next(err))
 }
 
 
 
-module.exports = createComment
+module.exports = {
+    createComment,
+    deleteComment,
+    editComment
+}
