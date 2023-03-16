@@ -15,4 +15,7 @@ router.use("/upload", uploadRoutes)
 const commentsRoutes = require("./comments.routes")
 router.use("/comments", commentsRoutes)
 
+const notificationsRoutes = require("./notifications.routes")
+router.use("/notifications", notificationsRoutes)
+
 module.exports = router
