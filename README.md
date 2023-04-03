@@ -1,7 +1,3 @@
-Frontend repository: https://github.com/ivanpereariza/client
-
-Deployed project: https://capyquiz.vercel.app/
-
 # API endpoints
 
 ## Auth routes
